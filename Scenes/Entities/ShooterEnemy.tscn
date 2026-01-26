@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://f217qbp28dpo"]
+
+[ext_resource type="PackedScene" uid="uid://mqy40n4l2nih" path="res://Scenes/Entities/BaseEnemy.tscn" id="1_4awng"]
+[ext_resource type="Script" uid="uid://b7bitki4lelj1" path="res://shooter_enemy.gd" id="2_v6xw4"]
+
+[sub_resource type="Gradient" id="Gradient_f00td"]
+offsets = PackedFloat32Array(0.8262712, 1)
+colors = PackedColorArray(0.9844546, 0, 0.59608823, 1, 12.456298, 12.456298, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4awng"]
+gradient = SubResource("Gradient_f00td")
+
+[node name="ShooterEnemy" instance=ExtResource("1_4awng")]
+script = ExtResource("2_v6xw4")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0.5, 2)
+texture = SubResource("GradientTexture2D_4awng")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0.25, 0.75)

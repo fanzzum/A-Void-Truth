@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://cde0f8yjvati"]
+
+[ext_resource type="Script" uid="uid://ctuqla61p8rgy" path="res://Scenes/UI/sacrifice_ui.gd" id="1_bp0t2"]
+
+[node name="SacrificeUi" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_bp0t2")
+
+[node name="Panel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+layout_mode = 0
+offset_right = 639.0
+offset_bottom = 361.0
+color = Color(0, 0, 0, 0.77900004)
+
+[node name="SacrificeRow" type="HBoxContainer" parent="."]
+offset_left = 180.0
+offset_top = 93.0
+offset_right = 466.0
+offset_bottom = 247.0
+alignment = 1
+
+[node name="Button" type="Button" parent="SacrificeRow"]
+layout_mode = 2
+text = "Sight"
+
+[node name="Button2" type="Button" parent="SacrificeRow"]
+layout_mode = 2
+text = "Soul"
+
+[node name="Button3" type="Button" parent="SacrificeRow"]
+layout_mode = 2
+text = "Reflex"
+
+[node name="SelectionRow" type="HBoxContainer" parent="."]
+visible = false
+offset_left = 203.0
+offset_top = 66.0
+offset_right = 438.0
+offset_bottom = 278.0
+alignment = 1
+
+[node name="BtnOptionA" type="Button" parent="SelectionRow"]
+layout_mode = 2
+
+[node name="BtnOptionB" type="Button" parent="SelectionRow"]
+layout_mode = 2
+
+[connection signal="pressed" from="SacrificeRow/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="SacrificeRow/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="SacrificeRow/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="SelectionRow/BtnOptionA" to="." method="_on_btn_option_a_pressed"]
+[connection signal="pressed" from="SelectionRow/BtnOptionB" to="." method="_on_btn_option_b_pressed"]

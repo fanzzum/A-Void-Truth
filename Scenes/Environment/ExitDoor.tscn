@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://w38kcn5adm8e"]
+
+[ext_resource type="Script" uid="uid://dk4cojdha14hv" path="res://Scenes/Environment/exit_door.gd" id="1_jtrp4"]
+
+[sub_resource type="Gradient" id="Gradient_a4muc"]
+offsets = PackedFloat32Array(0, 0.055084746)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0.68865365, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jtrp4"]
+gradient = SubResource("Gradient_a4muc")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkdm6"]
+size = Vector2(69, 25)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v0wta"]
+radius = 54.502293
+
+[node name="ExitDoor" type="StaticBody2D"]
+script = ExtResource("1_jtrp4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7.1525574e-07, 1)
+scale = Vector2(1.09375, 0.796875)
+texture = SubResource("GradientTexture2D_jtrp4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 13.5)
+shape = SubResource("RectangleShape2D_wkdm6")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 13.5)
+shape = SubResource("CircleShape2D_v0wta")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -56.0
+offset_top = -51.0
+offset_right = 68.0
+offset_bottom = -28.0
+text = "press L to leave"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

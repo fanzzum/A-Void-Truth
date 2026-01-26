@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://njyme1prjmyf"]
+
+[ext_resource type="PackedScene" uid="uid://mqy40n4l2nih" path="res://Scenes/Entities/BaseEnemy.tscn" id="1_yl6sa"]
+[ext_resource type="Script" uid="uid://4g1bx8ub76i1" path="res://Scenes/Entities/chaser_enemy.gd" id="2_wi6qj"]
+
+[sub_resource type="Gradient" id="Gradient_f00td"]
+offsets = PackedFloat32Array(0.8262712, 1)
+colors = PackedColorArray(0.9844546, 0, 0.59608823, 1, 12.456298, 12.456298, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wi6qj"]
+gradient = SubResource("Gradient_f00td")
+fill_to = Vector2(0.07967033, 0.0054945056)
+
+[node name="ChaserEnemy" instance=ExtResource("1_yl6sa")]
+script = ExtResource("2_wi6qj")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0.5, 1)
+texture = SubResource("GradientTexture2D_wi6qj")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0.25, -0.25)
