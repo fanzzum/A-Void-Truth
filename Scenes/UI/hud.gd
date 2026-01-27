@@ -1,56 +1,89 @@
 extends CanvasLayer
 
+# --- NODE REFERENCES ---
 @onready var health_bar = $MainControl/HealthBar
-@onready var bar_daydreamer = $MainControl/ConnectionBars/DayDreamer
-@onready var bar_pattern = $MainControl/ConnectionBars/PatternSeeker
-@onready var bar_blood = $MainControl/ConnectionBars/BloodRush
-@onready var bar_mimic = $MainControl/ConnectionBars/Mimic
 @onready var status_list = $MainControl/StatusList
+@onready var void_overlay = $MainControl/VoidOverlay
 
+# Updated paths for the HBoxContainer rows
+@onready var bar_daydreamer = $MainControl/ConnectionBars/DayDreamerRow/DayDreamer
+@onready var bar_pattern = $MainControl/ConnectionBars/PatternSeekerRow/PatternSeeker
+@onready var bar_blood = $MainControl/ConnectionBars/BloodRushRow/BloodRush
+@onready var bar_mimic = $MainControl/ConnectionBars/MimicRow/Mimic
 
-# Glitch Effect Variables
-var is_glitching = false
+# --- VARIABLES ---
+var previous_values = {
+	"PatternSeeker": 0,
+	"DayDreamer": 0,
+	"BloodRush": 0,
+	"Mimic": 0
+}
+
 var original_positions = {}
 
 func _ready() -> void:
 	# Store original positions for the shake effect
 	original_positions[health_bar] = health_bar.position
 	
-	# Connect to the update signal
+	# Connect to GameManager signal
 	GameManager.stats_updated.connect(update_ui)
 	
-	# Run once to set initial values
+	# Initialize history to current values to prevent "Recalled" messages on start
+	previous_values = GameManager.personalities.duplicate()
+	
 	update_ui()
 
-func _process(delta: float) -> void:
-	# 1. UPDATE HEALTH (Poll player directly)
-	# We poll HP because Player takes damage frequently without always emitting global signals
+func _process(_delta: float) -> void:
+	# 1. VOID OVERLAY VISIBILITY
+	if void_overlay:
+		void_overlay.visible = GameManager.is_void_level
+	
+	# 2. UPDATE HEALTH (Direct polling)
 	var player = get_tree().get_first_node_in_group("Player")
 	if player:
 		health_bar.max_value = GameManager.player_max_hp
 		health_bar.value = player.current_hp
 	
-	# 2. VOID GLITCH EFFECT
+	# 3. VOID GLITCH EFFECT
 	if GameManager.is_void_level:
 		apply_glitch_shake()
 
 func update_ui():
-	# Update Connection Bars from GameManager
+	# Update Connection Bar values
 	bar_daydreamer.value = GameManager.personalities["DayDreamer"]
 	bar_pattern.value = GameManager.personalities["PatternSeeker"]
 	bar_blood.value = GameManager.personalities["BloodRush"]
 	bar_mimic.value = GameManager.personalities["Mimic"]
+	
 	update_status_list()
-
+	
+	# Save current values for next comparison
+	previous_values = GameManager.personalities.duplicate()
 
 func update_status_list():
-	# 1. Clear old labels
+	# Clear old labels
 	for child in status_list.get_children():
 		child.queue_free()
 	
-	# 2. Check GameManager and add Labels
-	
-	# --- BUFFS ---
+	# --- NARRATIVE UPDATES ---
+	for p_name in GameManager.personalities.keys():
+		var current = GameManager.personalities[p_name]
+		var prev = previous_values.get(p_name, 0)
+		
+		if current != prev:
+			if current == 100:
+				add_status_label(p_name + " has been remembered.", Color.GOLD)
+			elif current == 0:
+				add_status_label(p_name + " has been forgotten.", Color.DIM_GRAY)
+			elif current > prev:
+				add_status_label(p_name + " has been recalled.", Color.GREEN_YELLOW)
+			elif current < prev:
+				add_status_label(p_name + " memory became more vague.", Color.ORANGE_RED)
+
+	if status_list.get_child_count() > 0:
+		add_status_label("----------------", Color.WHITE)
+
+	# --- BUFFS & NERFS DISPLAY ---
 	if GameManager.thermal_vision:
 		add_status_label("Thermal Vision", Color.CYAN)
 	
@@ -66,7 +99,6 @@ func update_status_list():
 	if GameManager.crit_chance > 0:
 		add_status_label("Crit: " + str(GameManager.crit_chance * 100) + "%", Color.YELLOW)
 
-	# --- NERFS / SACRIFICES ---
 	if GameManager.vision_scale < 1.0:
 		add_status_label("Partially Blind", Color.GRAY)
 		
@@ -76,24 +108,24 @@ func update_status_list():
 	if GameManager.speed_multiplier < 1.0:
 		add_status_label("Fragile Leg", Color.BROWN)
 
-
 func add_status_label(text: String, color: Color):
 	var label = Label.new()
 	label.text = text
 	label.modulate = color
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	label.add_theme_color_override("font_shadow_color", Color.BLACK)
+	label.add_theme_constant_override("shadow_offset_x", 1)
+	label.add_theme_constant_override("shadow_offset_y", 1)
 	status_list.add_child(label)
 
-
 func apply_glitch_shake():
-	# Randomly shake the bars slightly to simulate instability
+	# Random shake logic
 	var shake_amount = 2.0
 	var offset = Vector2(randf_range(-shake_amount, shake_amount), randf_range(-shake_amount, shake_amount))
-	
 	health_bar.position = original_positions[health_bar] + offset
 	
-	# Optional: Randomly change bar colors or visibility for extra "glitch"
-	if randf() < 0.05: # 5% chance per frame to flicker
-		health_bar.modulate = Color(10, 0, 0) # Flash RED bright
+	# Flicker effect
+	if randf() < 0.05:
+		health_bar.modulate = Color(10, 0, 0) # Over-bright red
 	else:
 		health_bar.modulate = Color.WHITE

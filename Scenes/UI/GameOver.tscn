@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5t1twx8o0o24"]
+
+[ext_resource type="Script" uid="uid://dmgf0c5hcsro1" path="res://Scenes/UI/game_over.gd" id="1_n002h"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_n002h")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 962.0
+offset_bottom = 544.0
+color = Color(0.07514561, 0.02581125, 0.025831403, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 172.0
+offset_right = 659.0
+offset_bottom = 273.0
+theme_override_colors/font_color = Color(1, 0.07016479, 0, 1)
+theme_override_font_sizes/font_size = 38
+text = "CONNECTION LOST"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 284.0
+offset_right = 537.0
+offset_bottom = 315.0
+text = "Retry Memory"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

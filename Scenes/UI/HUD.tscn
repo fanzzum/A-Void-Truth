@@ -39,27 +39,55 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_omqfp")
 
 [node name="ConnectionBars" type="VBoxContainer" parent="MainControl"]
 layout_mode = 0
-offset_left = 786.0
-offset_top = 18.0
-offset_right = 936.0
-offset_bottom = 138.0
+offset_left = 664.0
+offset_top = 14.0
+offset_right = 929.0
+offset_bottom = 134.0
 
-[node name="DayDreamer" type="ProgressBar" parent="MainControl/ConnectionBars"]
+[node name="DayDreamerRow" type="HBoxContainer" parent="MainControl/ConnectionBars"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainControl/ConnectionBars/DayDreamerRow"]
+layout_mode = 2
+text = "DayDreamer"
+
+[node name="DayDreamer" type="ProgressBar" parent="MainControl/ConnectionBars/DayDreamerRow"]
 custom_minimum_size = Vector2(150, 20)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_qc5w2")
 
-[node name="PatternSeeker" type="ProgressBar" parent="MainControl/ConnectionBars"]
+[node name="PatternSeekerRow" type="HBoxContainer" parent="MainControl/ConnectionBars"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainControl/ConnectionBars/PatternSeekerRow"]
+layout_mode = 2
+text = "PatternSeeker"
+
+[node name="PatternSeeker" type="ProgressBar" parent="MainControl/ConnectionBars/PatternSeekerRow"]
 custom_minimum_size = Vector2(150, 20)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_xaom8")
 
-[node name="BloodRush" type="ProgressBar" parent="MainControl/ConnectionBars"]
+[node name="BloodRushRow" type="HBoxContainer" parent="MainControl/ConnectionBars"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainControl/ConnectionBars/BloodRushRow"]
+layout_mode = 2
+text = "Bloodrush"
+
+[node name="BloodRush" type="ProgressBar" parent="MainControl/ConnectionBars/BloodRushRow"]
 custom_minimum_size = Vector2(150, 20)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_4bm6u")
 
-[node name="Mimic" type="ProgressBar" parent="MainControl/ConnectionBars"]
+[node name="MimicRow" type="HBoxContainer" parent="MainControl/ConnectionBars"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainControl/ConnectionBars/MimicRow"]
+layout_mode = 2
+text = "Mimic"
+
+[node name="Mimic" type="ProgressBar" parent="MainControl/ConnectionBars/MimicRow"]
 custom_minimum_size = Vector2(150, 20)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_ykvyr")
@@ -77,3 +105,13 @@ offset_right = 877.0
 offset_bottom = 298.0
 grow_horizontal = 0
 grow_vertical = 2
+
+[node name="VoidOverlay" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

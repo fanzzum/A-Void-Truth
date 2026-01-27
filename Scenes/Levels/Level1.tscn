@@ -117,6 +117,7 @@ color = Color(0.101960786, 0.101960786, 0.18039216, 1)
 
 [node name="ExitDoor" parent="." instance=ExtResource("4_kri6y")]
 position = Vector2(1491, -35)
+next_level_path = "uid://bqgk8vyicscgp"
 
 [node name="ChaserEnemy" parent="." instance=ExtResource("5_kri6y")]
 position = Vector2(59, 173)

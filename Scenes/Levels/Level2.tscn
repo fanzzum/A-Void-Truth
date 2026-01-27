@@ -1,0 +1,158 @@
+[gd_scene load_steps=9 format=3 uid="uid://bqgk8vyicscgp"]
+
+[ext_resource type="TileSet" uid="uid://bjweou6carnhc" path="res://Scenes/Levels/World.tres" id="1_4rk67"]
+[ext_resource type="PackedScene" uid="uid://bfi5qajxctm76" path="res://Scenes/Environment/Statue.tscn" id="2_f8qf7"]
+[ext_resource type="PackedScene" uid="uid://w38kcn5adm8e" path="res://Scenes/Environment/ExitDoor.tscn" id="3_lmdar"]
+[ext_resource type="PackedScene" uid="uid://udyu0pvek0yd" path="res://Scenes/Entities/Player.tscn" id="4_d1swa"]
+[ext_resource type="PackedScene" uid="uid://dsqa244d34lyo" path="res://Scenes/UI/HUD.tscn" id="5_ipaot"]
+[ext_resource type="PackedScene" uid="uid://njyme1prjmyf" path="res://Scenes/Entities/ChaserEnemy.tscn" id="6_ao4h1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngp1c"]
+size = Vector2(557.5, 99)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5eb6"]
+size = Vector2(158.5, 841.5)
+
+[node name="Level2" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_4rk67")
+format = 2
+layer_0/tile_data = PackedInt32Array(2097146, 524289, 18, 2097150, 524289, 18, 2031618, 524289, 18, 2031622, 524289, 18, 2031626, 524289, 18, 2031630, 524289, 18, 2031634, 524289, 18, 2031638, 524289, 18, 1835002, 0, 4, 1835006, 0, 4, 1769474, 0, 4, 1769478, 0, 4, 1769482, 0, 4, 1769486, 0, 4, 1769490, 0, 4, 1769494, 0, 4, 1572858, 0, 4, 1572862, 0, 4, 1507330, 0, 4, 1507334, 0, 4, 1507338, 0, 4, 1507342, 0, 4, 1507346, 0, 4, 1507350, 0, 4, 1310714, 0, 4, 1310718, 0, 4, 1245186, 0, 4, 1245190, 0, 4, 1245194, 0, 4, 1245198, 0, 4, 1245202, 0, 4, 1245206, 0, 4, 1048570, 0, 4, 1048574, 0, 4, 983042, 0, 4, 983046, 0, 4, 983050, 0, 4, 983054, 0, 4, 983058, 0, 4, 983062, 0, 4, 786426, 262144, 4, 786430, 262144, 4, 524282, 262144, 4, 524286, 262144, 4, 262138, 262144, 4, 262142, 262144, 4, -6, 262144, 4, -2, 262144, 4, -262150, 262144, 4, -262146, 262144, 4, -524318, 0, 4, -524314, 131073, 18, -524310, 131073, 18, -524306, 131073, 18, -524302, 131073, 18, -524298, 131073, 18, -851998, 0, 4, -851994, 0, 4, -851990, 0, 4, -851986, 0, 4, -851982, 0, 4, -851978, 0, 4, -851974, 0, 4, -851970, 0, 4, -786462, 0, 4, -786458, 0, 4, -786454, 0, 4, -786450, 0, 4, -786446, 0, 4, -786442, 0, 4, -1114142, 0, 4, -1114138, 0, 4, -1114134, 0, 4, -1114130, 0, 4, -1114126, 0, 4, -1114122, 0, 4, -1114118, 0, 4, -1114114, 0, 4, -1376286, 0, 4, -1376282, 0, 4, -1376278, 0, 4, -1376274, 0, 4, -1376270, 0, 4, -1376266, 0, 4, -1376262, 0, 4, -1376258, 0, 4, -1638430, 0, 4, -1638426, 0, 4, -1638422, 0, 4, -1638418, 0, 4, -1638414, 0, 4, -1638410, 0, 4, -1638406, 0, 4, -1638402, 0, 4, -1638462, 0, 4, -1638458, 0, 4, -1638454, 0, 4, -1638450, 0, 4, -1638446, 0, 4, -1638442, 0, 4, -1638438, 0, 4, -1638434, 0, 4, -1376318, 524289, 18, -1376314, 524289, 18, -1376310, 524289, 18, -1376306, 524289, 18, -1376302, 524289, 18, -1376298, 524289, 18, -1376294, 524289, 18, -1376290, 524289, 18, -1900606, 0, 4, -1900602, 0, 4, -1900598, 0, 4, -1900594, 0, 4, -1900590, 0, 4, -1900586, 0, 4, -1900582, 0, 4, -1900578, 0, 4, -2162750, 0, 4, -2162746, 0, 4, -2162742, 0, 4, -2162738, 0, 4, -2162734, 0, 4, -2162730, 0, 4, -2162726, 0, 4, -2162722, 0, 4, -2424894, 0, 4, -2424890, 0, 4, -2424886, 0, 4, -2424882, 0, 4, -2424878, 0, 4, -2424874, 0, 4, -2424870, 0, 4, -2424866, 0, 4, -2687038, 0, 4, -2687034, 0, 4, -2687030, 0, 4, -2687026, 0, 4, -2687022, 0, 4, -2687018, 0, 4, -2687014, 0, 4, -2687010, 0, 4, -2949182, 0, 4, -2949178, 0, 4, -2949174, 0, 4, -2949170, 0, 4, -2949166, 0, 4, -2949162, 0, 4, -2949158, 0, 4, -2949154, 0, 4, -3211326, 0, 4, -3211322, 0, 4, -3211318, 0, 4, -3211314, 0, 4, -3211310, 0, 4, -3211306, 0, 4, -3211302, 0, 4, -3211298, 0, 4, -3473470, 0, 4, -3473466, 0, 4, -3473462, 0, 4, -3473458, 0, 4, -3473454, 0, 4, -3473450, 0, 4, -3473446, 0, 4, -3473442, 0, 4, -3735614, 0, 4, -3735610, 0, 4, -3735606, 0, 4, -3735602, 0, 4, -3735598, 0, 4, -3735594, 0, 4, -3735590, 0, 4, -3735586, 0, 4, -3997758, 0, 4, -3997754, 0, 4, -3997750, 0, 4, -3997746, 0, 4, -3997742, 0, 4, -3997738, 0, 4, -3997734, 0, 4, -3997730, 0, 4, -786438, 0, 4, -786434, 0, 4, -524290, 0, 4, -524294, 0, 4, -524316, 131073, 12, 720899, 655361, 2, 720905, 655361, 2, 720911, 655361, 2, 720917, 655361, 2, -1900565, 655361, 2, -1900559, 655361, 2, -1900553, 655361, 2, -1900547, 655361, 2, -4259893, 655361, 2, -4259887, 655361, 2, -4259881, 655361, 2, -4259875, 655361, 2, -1900571, 655361, 2, -1900573, 655361, 2, -4259899, 655361, 2, -4259901, 655361, 2, 2097145, 131073, 6, 2031639, 327681, 6, -524319, 131073, 6, -1376319, 131073, 6, -1704000, 1179649, 2, -2097216, 1179649, 2, -2424896, 1179649, 2, -3473472, 1179649, 2, -3145792, 1179649, 2, -2752576, 1179649, 2, -4194368, 1179649, 2, -3866688, 1179649, 2, -1310752, 1179649, 2, -983072, 1179649, 2, -589856, 1179649, 2, -458760, 1179649, 2, -131080, 1179649, 2, 262136, 1179649, 2, 327672, 1179649, 2, 655352, 1179649, 2, 1048568, 1179649, 2, 1179640, 1179649, 2, 1507320, 1179649, 2, 1900536, 1179649, 2, -65536, 1179649, 2, 262144, 1179649, 2, 655360, 1179649, 2, 524288, 1376257, 2, 196608, 1376257, 2, -196608, 1376257, 2, -1900544, 1376257, 2, -1572864, 1376257, 2, -1245184, 1376257, 2, -983040, 1376257, 2, -524288, 1376257, 2, -720896, 1376257, 2, 1703960, 1376257, 2, 1310744, 1376257, 2, 983064, 1376257, 2, 786456, 1376257, 2, -2162720, 1376257, 2, -2555936, 1376257, 2, -2883616, 1376257, 2, -3145760, 1376257, 2, -3407904, 1376257, 2, -3735584, 1376257, 2, -4063264, 1376257, 2, -4194336, 1376257, 2)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(140, 510)
+shape = SubResource("RectangleShape2D_ngp1c")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(269, 182)
+shape = SubResource("RectangleShape2D_ngp1c")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-389, -126)
+shape = SubResource("RectangleShape2D_ngp1c")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-777, -341)
+shape = SubResource("RectangleShape2D_ngp1c")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-240, -475)
+shape = SubResource("RectangleShape2D_ngp1c")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-759, -1046)
+shape = SubResource("RectangleShape2D_ngp1c")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-186, 250)
+shape = SubResource("RectangleShape2D_u5eb6")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(69, -206)
+shape = SubResource("RectangleShape2D_u5eb6")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(448, 343)
+shape = SubResource("RectangleShape2D_u5eb6")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-567, 62)
+shape = SubResource("RectangleShape2D_u5eb6")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1074, -696)
+shape = SubResource("RectangleShape2D_u5eb6")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-442, -877)
+shape = SubResource("RectangleShape2D_u5eb6")
+
+[node name="Statue" parent="." instance=ExtResource("2_f8qf7")]
+position = Vector2(-758, -896)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.101960786, 0.101960786, 0.18039216, 1)
+
+[node name="ExitDoor" parent="." instance=ExtResource("3_lmdar")]
+position = Vector2(-914, -897)
+next_level_path = "uid://n7h8l245rlpu"
+
+[node name="Player" parent="." instance=ExtResource("4_d1swa")]
+position = Vector2(321, 428)
+
+[node name="Hud" parent="." instance=ExtResource("5_ipaot")]
+
+[node name="ChaserEnemy" parent="." instance=ExtResource("6_ao4h1")]
+position = Vector2(-741, -573)
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy2" parent="." instance=ExtResource("6_ao4h1")]
+position = Vector2(-934, -651)
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy3" parent="." instance=ExtResource("6_ao4h1")]
+position = Vector2(-4, 240.00003)
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy4" parent="." instance=ExtResource("6_ao4h1")]
+position = Vector2(-69, -206)
+rotation = -0.009971122
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy5" parent="." instance=ExtResource("6_ao4h1")]
+position = Vector2(-92, 93)
+rotation = -0.009971122
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy7" parent="." instance=ExtResource("6_ao4h1")]
+position = Vector2(-458.00006, -347.0001)
+rotation = -0.06839146
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy8" parent="." instance=ExtResource("6_ao4h1")]
+position = Vector2(-812.0001, -677.0001)
+rotation = -0.06839146
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy9" parent="." instance=ExtResource("6_ao4h1")]
+position = Vector2(-586.00006, -914.0001)
+rotation = -0.06839146
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy10" parent="." instance=ExtResource("6_ao4h1")]
+position = Vector2(-334, -243)
+rotation = -0.06839146
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy13" parent="." instance=ExtResource("6_ao4h1")]
+position = Vector2(-638, -495.99997)
+rotation = -0.060577862
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy14" parent="." instance=ExtResource("6_ao4h1")]
+position = Vector2(-637, -827)
+rotation = -0.060577862
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy15" parent="." instance=ExtResource("6_ao4h1")]
+position = Vector2(-864, -462.99997)
+rotation = -0.060577862
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy16" parent="." instance=ExtResource("6_ao4h1")]
+position = Vector2(-863, -766)
+rotation = -0.060577862
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy17" parent="." instance=ExtResource("6_ao4h1")]
+position = Vector2(-199, -375.99994)
+rotation = -0.060577862
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy18" parent="." instance=ExtResource("6_ao4h1")]
+position = Vector2(-47, 134.00002)
+rotation = -0.060577862
+scale = Vector2(2, 2)

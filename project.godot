@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="A Void Truth"
-run/main_scene="uid://bg3lgrmv831ot"
+run/main_scene="uid://kl8caffe1dip"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
+MusicManager="*res://Scenes/UI/MusicManager.tscn"
 GameManager="*res://Scripts/GameManager.gd"
 
 [display]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgid5km1e8g7m"]
+
+[ext_resource type="AudioStream" uid="uid://drshbkjnrw5fl" path="res://Assets/Audio/main.wav" id="1_gss2j"]
+
+[node name="MusicManager" type="Node2D"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_gss2j")
+volume_db = -5.977
+autoplay = true

@@ -132,7 +132,7 @@ func take_damage(amount):
 		
 func die():
 	GameManager.reset_run()
-	get_tree().change_scene_to_file("res://Scenes/Levels/World.tscn")
+	get_tree().change_scene_to_file("res://Scenes/UI/GameOver.tscn")
 		
 		
 func start_dash():

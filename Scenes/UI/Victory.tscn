@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://n7h8l245rlpu"]
+
+[ext_resource type="Script" uid="uid://dalf3gxe8iw8n" path="res://Scenes/UI/victory.gd" id="1_gbojg"]
+
+[node name="Victory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gbojg")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 962.0
+offset_bottom = 544.0
+color = Color(0.028254006, 0.030720355, 0.11211213, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 172.0
+offset_right = 659.0
+offset_bottom = 273.0
+theme_override_colors/font_color = Color(0, 0.5552664, 0.9226742, 1)
+theme_override_font_sizes/font_size = 38
+text = "Memory Restored"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 419.0
+offset_top = 284.0
+offset_right = 537.0
+offset_bottom = 315.0
+text = "Main Menu
+"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

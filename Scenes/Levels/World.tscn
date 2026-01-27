@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://udyu0pvek0yd" path="res://Scenes/Entities/Player.tscn" id="1_0yxnd"]
 [ext_resource type="TileSet" uid="uid://bjweou6carnhc" path="res://Scenes/Levels/World.tres" id="1_exae8"]
-[ext_resource type="PackedScene" uid="uid://f217qbp28dpo" path="res://Scenes/Entities/ShooterEnemy.tscn" id="2_w0a6n"]
+[ext_resource type="Script" uid="uid://bjcicxnro84ht" path="res://Scenes/Levels/world.gd" id="1_n8hij"]
 [ext_resource type="PackedScene" uid="uid://njyme1prjmyf" path="res://Scenes/Entities/ChaserEnemy.tscn" id="3_28y5c"]
 [ext_resource type="PackedScene" uid="uid://bfi5qajxctm76" path="res://Scenes/Environment/Statue.tscn" id="4_vi80n"]
 [ext_resource type="PackedScene" uid="uid://w38kcn5adm8e" path="res://Scenes/Environment/ExitDoor.tscn" id="5_l0cnv"]
@@ -16,6 +16,7 @@ size = Vector2(6, 601.5)
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_n8hij")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 z_index = 1
@@ -52,11 +53,6 @@ layer_0/tile_data = PackedInt32Array(7798831, 131073, 18, 7864389, 131073, 18, 2
 [node name="Player" parent="." instance=ExtResource("1_0yxnd")]
 y_sort_enabled = true
 position = Vector2(54, 356)
-
-[node name="ShooterEnemy" parent="." instance=ExtResource("2_w0a6n")]
-y_sort_enabled = true
-position = Vector2(502, 219)
-collision_mask = 21
 
 [node name="ChaserEnemy" parent="." instance=ExtResource("3_28y5c")]
 y_sort_enabled = true

@@ -28,5 +28,15 @@ collision_mask = 2
 position = Vector2(0, -16)
 shape = SubResource("CircleShape2D_rg8ys")
 
+[node name="Label" type="Label" parent="."]
+visible = false
+z_index = 1
+offset_left = -66.0
+offset_top = -46.0
+offset_right = 87.0
+offset_bottom = -23.0
+theme_override_font_sizes/font_size = 10
+text = "press O to Summon"
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

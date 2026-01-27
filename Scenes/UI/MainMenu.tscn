@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://kl8caffe1dip"]
+
+[ext_resource type="Script" uid="uid://djnmlqrx1mkbx" path="res://Scenes/UI/main_menu.gd" id="1_g18y6"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_g18y6")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 964.0
+offset_bottom = 539.0
+color = Color(0, 0.070915915, 0.071686275, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 337.0
+offset_top = 171.0
+offset_right = 601.0
+offset_bottom = 272.0
+theme_override_colors/font_color = Color(0, 0.575671, 0.84239376, 1)
+theme_override_font_sizes/font_size = 38
+text = "A VOID TRUTH"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 418.0
+offset_top = 258.0
+offset_right = 514.0
+offset_bottom = 289.0
+text = "Start Game"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 446.0
+offset_top = 318.0
+offset_right = 483.0
+offset_bottom = 349.0
+text = "Exit"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
