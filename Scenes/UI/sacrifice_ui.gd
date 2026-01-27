@@ -1,5 +1,12 @@
 extends CanvasLayer
 
+var descriptions = {
+	"PatternSeeker": "\n[+25% Resist]\n[Thermal Vision]",
+	"DayDreamer": "\n[+2 Bounces]\n[+15% Crit]",
+	"BloodRush": "\n[+50% Damage]\n[Tunnel Vision]",
+	"Mimic": "\n[Ghost Helper]\n[+Speed]"
+}
+
 @onready var sacrifice_row = $SacrificeRow
 @onready var selection_row = $SelectionRow
 @onready var btn_a = $SelectionRow/BtnOptionA
@@ -37,12 +44,19 @@ func close_menu():
 	queue_free()
 
 func advance_to_stage_2():
-	sacrifice_row.visible=false
+	sacrifice_row.visible = false
 	current_pair = GameManager.get_random_pair()
-	btn_a.text = "Summon \n" + current_pair[0]
-	btn_b.text = "Summon \n" + current_pair[1]
+	
+	var name_a = current_pair[0]
+	var name_b = current_pair[1]
+	
+	# Update Button Text with Name + Description
+	btn_a.text = "Summon \n" + name_a +"\n"+ descriptions.get(name_a, "")
+	btn_b.text = "Summon \n" + name_b +"\n"+ descriptions.get(name_b, "")
+	
 	selection_row.visible = true
-
+	
+	
 func _on_btn_option_a_pressed() -> void:
 	GameManager.choose_personality(current_pair[0],current_pair[1])
 	close_menu()

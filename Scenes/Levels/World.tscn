@@ -1,25 +1,79 @@
-[gd_scene load_steps=6 format=3 uid="uid://bg3lgrmv831ot"]
+[gd_scene load_steps=10 format=3 uid="uid://bg3lgrmv831ot"]
 
 [ext_resource type="PackedScene" uid="uid://udyu0pvek0yd" path="res://Scenes/Entities/Player.tscn" id="1_0yxnd"]
+[ext_resource type="TileSet" uid="uid://bjweou6carnhc" path="res://Scenes/Levels/World.tres" id="1_exae8"]
 [ext_resource type="PackedScene" uid="uid://f217qbp28dpo" path="res://Scenes/Entities/ShooterEnemy.tscn" id="2_w0a6n"]
 [ext_resource type="PackedScene" uid="uid://njyme1prjmyf" path="res://Scenes/Entities/ChaserEnemy.tscn" id="3_28y5c"]
 [ext_resource type="PackedScene" uid="uid://bfi5qajxctm76" path="res://Scenes/Environment/Statue.tscn" id="4_vi80n"]
 [ext_resource type="PackedScene" uid="uid://w38kcn5adm8e" path="res://Scenes/Environment/ExitDoor.tscn" id="5_l0cnv"]
+[ext_resource type="PackedScene" uid="uid://dsqa244d34lyo" path="res://Scenes/UI/HUD.tscn" id="9_0v0gn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8hij"]
+size = Vector2(1034.5, 93.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0v0gn"]
+size = Vector2(6, 601.5)
 
 [node name="World" type="Node2D"]
+y_sort_enabled = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visibility_layer = 9
+position = Vector2(469.75, 505.5)
+shape = SubResource("RectangleShape2D_n8hij")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+visibility_layer = 9
+y_sort_enabled = true
+position = Vector2(472, -29.75)
+shape = SubResource("RectangleShape2D_n8hij")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+visibility_layer = 9
+position = Vector2(-43, 247.75)
+shape = SubResource("RectangleShape2D_0v0gn")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+visibility_layer = 9
+position = Vector2(986, 248)
+shape = SubResource("RectangleShape2D_0v0gn")
+
+[node name="Ground" type="TileMap" parent="."]
+tile_set = ExtResource("1_exae8")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(7798831, 131073, 18, 7864389, 131073, 18, 2097153, 131073, 18, 2097157, 131073, 18, 2097161, 131073, 18, 2097165, 131073, 18, 2097169, 131073, 18, 2097175, 131073, 12, 2097183, 131073, 12, 2097191, 131073, 12, 2097199, 131073, 12, 2097207, 131073, 12, 2162686, 131073, 6, 2097212, 327681, 6, 1835005, 1179649, 2, 1441789, 1179649, 2, 1048573, 1179649, 2, 655357, 1179649, 2, 262141, 1179649, 2, -131075, 1179649, 2, 1769533, 1376257, 2, 1376317, 1376257, 2, 983101, 1376257, 2, 589885, 1376257, 2, 196669, 1376257, 2, -196547, 1376257, 2, -262090, 655361, 2, -262086, 655361, 2, -262144, 655361, 2, -262138, 655361, 2, -262132, 655361, 2, -262126, 655361, 2, -262120, 655361, 2, -262114, 655361, 2, -262108, 655361, 2, -262102, 655361, 2, -262096, 655361, 2, 65535, 0, 0, 3, 0, 0, 7, 0, 0, 11, 0, 0, 15, 524288, 0, 19, 0, 0, 23, 0, 0, 27, 0, 0, 31, 0, 0, 35, 0, 0, 39, 0, 0, 43, 0, 0, 47, 0, 0, 51, 524288, 4, 59, 524288, 4, 55, 262144, 4, 327679, 0, 0, 262147, 0, 0, 262151, 0, 0, 262155, 0, 0, 262159, 0, 0, 262163, 0, 0, 262167, 524288, 4, 524311, 524288, 4, 262171, 786432, 4, 524315, 524288, 0, 262175, 0, 0, 262179, 0, 0, 262183, 0, 0, 262187, 0, 0, 262191, 0, 0, 262195, 0, 0, 262199, 0, 0, 262203, 0, 0, 589823, 0, 0, 524291, 0, 0, 524295, 0, 0, 524299, 0, 0, 524303, 0, 0, 524319, 0, 0, 524323, 0, 0, 524327, 0, 0, 524331, 0, 0, 524335, 0, 0, 524339, 0, 0, 524343, 0, 0, 524347, 0, 0, 851967, 0, 0, 786435, 0, 0, 786439, 0, 0, 786443, 0, 0, 786447, 0, 0, 786451, 0, 0, 786455, 0, 0, 786459, 0, 0, 786463, 0, 0, 786467, 0, 0, 786471, 0, 0, 786475, 0, 0, 786479, 0, 0, 786483, 0, 0, 786487, 0, 0, 786491, 262144, 0, 524307, 524288, 0, 1114111, 0, 0, 1048579, 0, 0, 1048583, 0, 0, 1048587, 0, 0, 1048591, 0, 0, 1048595, 0, 0, 1048599, 0, 0, 1048603, 0, 0, 1048607, 0, 0, 1048611, 0, 0, 1048615, 0, 0, 1048619, 0, 0, 1048623, 0, 0, 1048627, 0, 0, 1048631, 0, 0, 1048635, 262144, 0, 1376255, 0, 0, 1310723, 0, 0, 1310727, 0, 0, 1310731, 0, 0, 1310735, 0, 0, 1310739, 0, 0, 1310743, 0, 0, 1310747, 0, 0, 1310751, 0, 0, 1310755, 0, 0, 1310759, 0, 0, 1310763, 0, 0, 1310767, 0, 0, 1310771, 0, 0, 1310775, 0, 0, 1310779, 262144, 0, 1572894, 524288, 0, 1572898, 786432, 0, 1572890, 524288, 4, 1835034, 524288, 4, 1638399, 0, 0, 1572867, 0, 0, 1572871, 0, 0, 1572875, 0, 0, 1572879, 0, 0, 1572883, 0, 0, 1572887, 0, 0, 1900543, 0, 0, 1835011, 0, 0, 1835015, 0, 0, 1835019, 0, 0, 1835023, 0, 0, 1835027, 0, 0, 1835031, 0, 0, 1835038, 0, 0, 1835042, 0, 0, 1835046, 0, 0, 1835050, 0, 0, 1835054, 0, 0, 1835058, 0, 0, 1835062, 0, 0, 1572899, 0, 0, 1572903, 0, 0, 1572907, 0, 0, 1572911, 0, 0, 1572915, 0, 0, 1572919, 0, 0, 1572923, 0, 0, 1638435, 0, 0, 1638439, 0, 0, 1638443, 0, 0, 1638447, 0, 0, 1638451, 0, 0, 1638455, 0, 0, 1638459, 0, 0, 1835043, 0, 0, 1835047, 0, 0, 1835051, 0, 0, 1835055, 0, 0, 1835059, 0, 0, 1835063, 0, 0, 1835067, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_0yxnd")]
-position = Vector2(290, 154)
+y_sort_enabled = true
+position = Vector2(54, 356)
 
 [node name="ShooterEnemy" parent="." instance=ExtResource("2_w0a6n")]
-position = Vector2(549, 99)
+y_sort_enabled = true
+position = Vector2(502, 219)
+collision_mask = 21
 
 [node name="ChaserEnemy" parent="." instance=ExtResource("3_28y5c")]
-position = Vector2(114, 257)
+y_sort_enabled = true
+position = Vector2(765, 340.99997)
+scale = Vector2(2.2, 2.2)
+collision_mask = 21
 
 [node name="Statue" parent="." instance=ExtResource("4_vi80n")]
-position = Vector2(508, 258)
+y_sort_enabled = true
+position = Vector2(716, 100.99999)
+scale = Vector2(1.7, 1.7)
 
 [node name="ExitDoor" parent="." instance=ExtResource("5_l0cnv")]
-position = Vector2(45, 308)
+position = Vector2(884, 117)
 next_level_path = "uid://bidxgcmqcx4lr"
+
+[node name="Hud" parent="." instance=ExtResource("9_0v0gn")]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.101960786, 0.101960786, 0.18039216, 1)

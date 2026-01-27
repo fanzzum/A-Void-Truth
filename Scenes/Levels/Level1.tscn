@@ -1,8 +1,172 @@
-[gd_scene load_steps=2 format=3 uid="uid://bidxgcmqcx4lr"]
+[gd_scene load_steps=11 format=3 uid="uid://bidxgcmqcx4lr"]
 
 [ext_resource type="PackedScene" uid="uid://bfi5qajxctm76" path="res://Scenes/Environment/Statue.tscn" id="1_5jgm0"]
+[ext_resource type="TileSet" uid="uid://bjweou6carnhc" path="res://Scenes/Levels/World.tres" id="1_xvio3"]
+[ext_resource type="PackedScene" uid="uid://udyu0pvek0yd" path="res://Scenes/Entities/Player.tscn" id="2_36ke7"]
+[ext_resource type="PackedScene" uid="uid://w38kcn5adm8e" path="res://Scenes/Environment/ExitDoor.tscn" id="4_kri6y"]
+[ext_resource type="PackedScene" uid="uid://njyme1prjmyf" path="res://Scenes/Entities/ChaserEnemy.tscn" id="5_kri6y"]
+[ext_resource type="PackedScene" uid="uid://dsqa244d34lyo" path="res://Scenes/UI/HUD.tscn" id="6_4d3fe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xvio3"]
+size = Vector2(609.25, 90.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kri6y"]
+size = Vector2(1194, 94)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4d3fe"]
+size = Vector2(142, 276)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ipdw"]
+size = Vector2(244, 539)
 
 [node name="Level1" type="Node2D"]
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(126.25, 424.25)
+shape = SubResource("RectangleShape2D_xvio3")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(1326, -324)
+shape = SubResource("RectangleShape2D_xvio3")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(1326, 222)
+shape = SubResource("RectangleShape2D_xvio3")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(474, 78)
+shape = SubResource("RectangleShape2D_xvio3")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(476, 236)
+shape = SubResource("RectangleShape2D_xvio3")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(-295, 232)
+shape = SubResource("RectangleShape2D_xvio3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(740.375, 48)
+shape = SubResource("RectangleShape2D_xvio3")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(451, -213)
+shape = SubResource("RectangleShape2D_kri6y")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(-53, 152)
+shape = SubResource("RectangleShape2D_4d3fe")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(228, 159)
+shape = SubResource("RectangleShape2D_4d3fe")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(396, 319)
+shape = SubResource("RectangleShape2D_4d3fe")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(-149, 326)
+shape = SubResource("RectangleShape2D_4d3fe")
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(-165, -102)
+shape = SubResource("RectangleShape2D_4d3fe")
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(986, 154)
+shape = SubResource("RectangleShape2D_4d3fe")
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(986, -308)
+shape = SubResource("RectangleShape2D_4d3fe")
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 1
+position = Vector2(1687, -40.5)
+shape = SubResource("RectangleShape2D_3ipdw")
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(104, 309)
+tile_set = ExtResource("1_xvio3")
+format = 2
+layer_0/tile_data = PackedInt32Array(524277, 262144, 0, 524281, 262144, 0, 524285, 262144, 0, 458753, 262144, 0, 458757, 262144, 0, 458761, 262144, 0, 458765, 131073, 18, 262133, 262144, 0, 262137, 262144, 0, 262141, 262144, 0, 196609, 262144, 0, 196613, 262144, 0, 196617, 262144, 0, 196621, 262144, 0, -11, 262144, 0, -7, 262144, 0, -3, 262144, 0, -65535, 262144, 0, -65531, 262144, 0, -65527, 262144, 0, -65523, 262144, 0, -262149, 262144, 0, -262145, 262144, 0, -327677, 262144, 0, -524293, 262144, 0, -524289, 262144, 0, -589821, 262144, 0, -786437, 262144, 0, -786433, 262144, 0, -851965, 262144, 0, -1114112, 262144, 0, -1114108, 262144, 0, -1114104, 262144, 0, -1048588, 262144, 0, -1048584, 262144, 0, -1048580, 262144, 0, -1114100, 262144, 0, -1114096, 262144, 0, -1114092, 262144, 0, -1310732, 262144, 0, -1310728, 262144, 0, -1310724, 262144, 0, -1376256, 262144, 0, -1376252, 262144, 0, -1376248, 262144, 0, -1376244, 262144, 0, -1376240, 262144, 0, -1376236, 262144, 0, -1572876, 262144, 0, -1572872, 262144, 0, -1572868, 262144, 0, -1638400, 262144, 0, -1638396, 262144, 0, -1638392, 262144, 0, -1638388, 262144, 0, -1638384, 262144, 0, -1638380, 262144, 0, -1835020, 262144, 0, -1835016, 262144, 0, -1835012, 262144, 0, -1900544, 262144, 0, -1900540, 262144, 0, -1900536, 262144, 0, -1900532, 262144, 0, -1900528, 262144, 0, -1900524, 262144, 0, -1638376, 262144, 0, -1638372, 262144, 0, -1638368, 262144, 0, -1638364, 262144, 0, -1638360, 262144, 0, -1638356, 262144, 0, -1638352, 262144, 0, -1638348, 262144, 0, -1638344, 262144, 0, -1900520, 262144, 0, -1900516, 262144, 0, -1900512, 262144, 0, -1900508, 262144, 0, -1900504, 262144, 0, -1900500, 262144, 0, -1900496, 262144, 0, -1900492, 262144, 0, -1900488, 262144, 0, -1376200, 262144, 0, -1376204, 262144, 0, -1376208, 262144, 0, -1376212, 262144, 0, -1376216, 262144, 0, -1376220, 262144, 0, -1376224, 262144, 0, -1376228, 262144, 0, -1376232, 262144, 0, -2359236, 262144, 0, -2097092, 262144, 0, -1834948, 262144, 0, -1572804, 262144, 0, -1310660, 262144, 0, -1048516, 262144, 0, -786372, 262144, 0, -524228, 262144, 0, -2359232, 262144, 0, -2097088, 262144, 0, -1834944, 262144, 0, -1572800, 262144, 0, -1310656, 262144, 0, -1048512, 262144, 0, -786368, 262144, 0, -524224, 262144, 0, -2359228, 262144, 0, -2097084, 262144, 0, -1834940, 262144, 0, -1572796, 262144, 0, -1310652, 262144, 0, -1048508, 262144, 0, -786364, 262144, 0, -524220, 262144, 0, -2359224, 262144, 0, -2097080, 262144, 0, -1834936, 262144, 0, -1572792, 262144, 0, -1310648, 262144, 0, -1048504, 262144, 0, -786360, 262144, 0, -524216, 262144, 0, -2359220, 262144, 0, -2097076, 262144, 0, -1834932, 262144, 0, -1572788, 262144, 0, -1310644, 262144, 0, -1048500, 262144, 0, -786356, 262144, 0, -524212, 262144, 0, -2359216, 262144, 0, -2097072, 262144, 0, -1834928, 262144, 0, -1572784, 262144, 0, -1310640, 262144, 0, -1048496, 262144, 0, -786352, 262144, 0, -524208, 262144, 0, -2359212, 262144, 0, -2097068, 262144, 0, -1834924, 262144, 0, -1572780, 262144, 0, -1310636, 262144, 0, -1048492, 262144, 0, -786348, 262144, 0, -524204, 262144, 0, -2359208, 262144, 0, -2097064, 262144, 0, -1834920, 262144, 0, -1572776, 262144, 0, -1310632, 262144, 0, -1048488, 262144, 0, -786344, 262144, 0, -524200, 262144, 0, -2359204, 262144, 0, -2097060, 262144, 0, -1834916, 262144, 0, -1572772, 262144, 0, -1310628, 262144, 0, -1048484, 262144, 0, -786340, 262144, 0, -524196, 262144, 0, 524279, 131073, 12, 524283, 131073, 12, 524287, 131073, 12, 458759, 131073, 12, 458763, 131073, 12, 524276, 131073, 6, 458766, 327681, 6, 196595, 1179649, 2, 65523, 1179649, 2, -327687, 1179649, 2, -720903, 1179649, 2, -1114126, 1179649, 2, -1507342, 1179649, 2, -1769486, 1179649, 2, -589766, 1179649, 2, -1048518, 1179649, 2, -982982, 1179649, 2, -2228166, 1179649, 2, -2293702, 1179649, 2, -1048554, 1179649, 2, -983020, 327681, 6, -983025, 131073, 12, -983031, 131073, 12, -327671, 131073, 12, -327669, 131073, 12, -458693, 131073, 6, -393157, 131073, 6, -524229, 131073, 6, -393154, 131073, 12, -393146, 131073, 12, -393142, 131073, 12, -393138, 131073, 12, -393130, 131073, 12, -393126, 131073, 12, -393123, 327681, 6, -393125, 131073, 18, -393124, 131073, 18, -720802, 1376257, 2, -1114018, 1376257, 2, -1507234, 1376257, 2, -1900450, 1376257, 2, -2359202, 1376257, 2, -2293666, 1376257, 2, -2621349, 655361, 2, -2621355, 655361, 2, -2621361, 655361, 2, -2621367, 655361, 2, -2621373, 655361, 2, -2621378, 655361, 2, -2621380, 655361, 2, -2162633, 655361, 2, -2162639, 655361, 2, -2162645, 655361, 2, -2162651, 655361, 2, -2162657, 655361, 2, -2162663, 655361, 2, -2162669, 655361, 2, -2162675, 655361, 2, -2162681, 655361, 2, -2162687, 655361, 2, -2097157, 655361, 2, -2097163, 655361, 2, -2097164, 655361, 2, -983052, 131073, 18, -983049, 131073, 18, -262154, 655361, 2, -196621, 1179649, 2, -524283, 1376257, 2, -851963, 1376257, 2, -917499, 1376257, 2, -262129, 1376257, 2, 131087, 1376257, 2, -1114087, 131073, 12, -1114079, 131073, 12, -1114071, 131073, 12, -1114064, 131073, 12, -1114058, 131073, 12)
+
 [node name="Statue" parent="." instance=ExtResource("1_5jgm0")]
-position = Vector2(290, 177)
+position = Vector2(1415, 85)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.101960786, 0.101960786, 0.18039216, 1)
+
+[node name="ExitDoor" parent="." instance=ExtResource("4_kri6y")]
+position = Vector2(1491, -35)
+
+[node name="ChaserEnemy" parent="." instance=ExtResource("5_kri6y")]
+position = Vector2(59, 173)
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy2" parent="." instance=ExtResource("5_kri6y")]
+position = Vector2(109, 111)
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy3" parent="." instance=ExtResource("5_kri6y")]
+position = Vector2(1261, -42)
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy4" parent="." instance=ExtResource("5_kri6y")]
+position = Vector2(1121, -39)
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy5" parent="." instance=ExtResource("5_kri6y")]
+position = Vector2(423, -95)
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy12" parent="." instance=ExtResource("5_kri6y")]
+position = Vector2(875, -43)
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy6" parent="." instance=ExtResource("5_kri6y")]
+position = Vector2(1225, -151)
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy7" parent="." instance=ExtResource("5_kri6y")]
+position = Vector2(219, -15)
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy8" parent="." instance=ExtResource("5_kri6y")]
+position = Vector2(1423, -156)
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy9" parent="." instance=ExtResource("5_kri6y")]
+position = Vector2(-33, -69)
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy10" parent="." instance=ExtResource("5_kri6y")]
+position = Vector2(1273, 137)
+scale = Vector2(2, 2)
+
+[node name="ChaserEnemy11" parent="." instance=ExtResource("5_kri6y")]
+position = Vector2(1128, 114)
+scale = Vector2(2, 2)
+
+[node name="Player" parent="." instance=ExtResource("2_36ke7")]
+position = Vector2(59, 352)
+
+[node name="Hud" parent="." instance=ExtResource("6_4d3fe")]
