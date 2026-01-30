@@ -26,6 +26,10 @@ window/size/viewport_width=960
 window/size/viewport_height=540
 window/stretch/mode="viewport"
 
+[gui]
+
+theme/custom="uid://42b70m6d0jag"
+
 [input]
 
 move_up={

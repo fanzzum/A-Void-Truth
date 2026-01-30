@@ -53,12 +53,19 @@ func _process(delta: float) -> void:
 func take_damage(amount: float):
 	hp -= amount
 	
+	# --- START FLASH LOGIC ---
+	# Create a quick white flash effect
+	var tween = create_tween()
+	# Set modulate to a very high value to make it "glow" white
+	anim.modulate = Color(10, 10, 10, 1) 
+	# Smoothly transition back to the standard color (or thermal color) over 0.1 seconds
+	var target_color = Color(3, 0.5, 0.5) if GameManager.thermal_vision else Color.WHITE
+	tween.tween_property(anim, "modulate", target_color, 0.1)
+	# --- END FLASH LOGIC ---
+	
 	# Play Hit Animation (if not already dying)
 	if hp > 0:
 		anim.play("hit")
-		# Wait for hit anim to finish before returning to run? 
-		# For simple AI, usually we just let the next physics frame override it to 'run'
-		# unless we use an 'is_hurting' flag. For now, let's keep it simple.
 	
 	if hp <= 0:
 		die()

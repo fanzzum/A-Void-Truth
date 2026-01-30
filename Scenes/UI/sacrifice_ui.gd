@@ -11,12 +11,33 @@ var descriptions = {
 @onready var selection_row = $SelectionRow
 @onready var btn_a = $SelectionRow/BtnOptionA
 @onready var btn_b = $SelectionRow/BtnOptionB
-
+@onready var btn_vision = $SacrificeRow/Button
+@onready var btn_soul = $SacrificeRow/Button2
+@onready var btn_legs = $SacrificeRow/Button3
 var current_pair = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_tree().paused =true
+	# --- NEW: ANTI-EXPLOIT CHECKS ---
+	
+	# 1. Check Vision (Cost: 0.25, Min: 0.2)
+	# If current is close to min, disable button
+	if GameManager.vision_scale <= 0.25:
+		btn_vision.disabled = true
+		btn_vision.text = "Vision\nFractured\n(Limit Reached)"
+	
+	# 2. Check Soul/HP (Cost: 30, Min: 10)
+	# If you have 40 or less, you can't pay 30 safely
+	if GameManager.player_max_hp <= 40:
+		btn_soul.disabled = true
+		btn_soul.text = "Soul\nFractured\n(Limit Reached)"
+		
+	# 3. Check Legs/Speed (Cost: 0.15)
+	# Assuming min speed is around 0.5
+	if GameManager.speed_multiplier <= 0.6:
+		btn_legs.disabled = true
+		btn_legs.text = "Legs\nFractured\n(Limit Reached)"
 	
 
 

@@ -3,8 +3,8 @@ extends CharacterBody2D
 var projectile_scene = preload("res://Scenes/Entities/PlayerProjectile.tscn")
 # EXPORT VARIABLES: Tweak these in the Inspector!
 @export_group("Movement")
-@export var speed: float = 180.0
-@export var dash_speed: float = 500.0
+@export var speed: float = 280.0
+@export var dash_speed: float = 600.0
 @export var dash_duration: float = 0.2
 @export var dash_cooldown: float = 0.5
 @export var current_hp = 0.0
@@ -24,6 +24,19 @@ func _ready() -> void:
 	add_to_group("Player")
 	update_stats()
 	GameManager.stats_updated.connect(update_stats)
+
+
+func get_movement_dir() -> String:
+	# If we aren't moving, default to aiming direction so we don't snap weirdly
+	if velocity.length() == 0:
+		return get_facing_direction()
+		
+	# Compare horizontal vs vertical speed to see which is dominant
+	if abs(velocity.x) > abs(velocity.y):
+		return "right" if velocity.x > 0 else "left"
+	else:
+		return "down" if velocity.y > 0 else "up"
+
 
 
 func update_stats():
@@ -77,49 +90,74 @@ func get_facing_direction() -> String:
 	else:
 		return "left"
 
+
 func update_animation_state(move_input: Vector2):
-	# If we are attacking, don't interrupt it with run/idle
-	if is_attacking: return
+	# Don't interrupt attacks or dashes
+	if is_attacking or is_dashing: 
+		return
 	
-	var face_dir = get_facing_direction()
-	
+	# CASE 1: MOVING (Use Velocity Direction)
 	if velocity.length() > 0:
-		anim.play("run_" + face_dir)
+		var move_dir = get_movement_dir()
+		anim.play("run_" + move_dir)
+		
+	# CASE 2: STANDING STILL (Use Mouse/Aim Direction)
 	else:
-		anim.play("idle_" + face_dir)
-		
-		
-		
+		var look_dir = get_facing_direction()
+		anim.play("idle_" + look_dir)
+
 func shoot():
-	if current_hp>=GameManager.hp_cost_beam:
-		take_damage(GameManager.hp_cost_beam)
+	if current_hp > GameManager.hp_cost_beam:
 		is_attacking = true
 		var face_dir = get_facing_direction()
-		anim.play("shoot_" + face_dir) # Make sure you have shoot_up, shoot_down, etc.
+		anim.play("shoot_" + face_dir) 
 		
-		# 3. Create Projectile
+		# 1. WAIT for the gun to actually lift up (e.g., 0.3 seconds)
+		await get_tree().create_timer(0.15).timeout 
+		
+		# --- SPAWN PROJECTILE LOGIC STARTS HERE ---
 		var beam = projectile_scene.instantiate()
 		beam.global_position = muzzle.global_position
 		beam.rotation = weapon_pivot.rotation
-		get_tree().root.add_child(beam)
 		
-		# 4. Wait for animation
-		await anim.animation_finished
-		is_attacking = false
+		var tree = get_tree()
+		if tree and tree.root:
+			tree.root.add_child(beam)
+		
+		take_damage(GameManager.hp_cost_beam)
+		# --- SPAWN LOGIC ENDS ---
+		
+		if current_hp > 0:
+			await anim.animation_finished
+			is_attacking = false
 	
 	
+# In player.gd
+
 func melee_swing():
 	is_attacking = true
-	melee_hitbox.disabled = false # Turn ON the circle
 	
-	# 1. Visuals
+	# 1. Start the visual animation
 	var face_dir = get_facing_direction()
 	anim.play("melee_" + face_dir) 
 	
-	# 2. Wait for animation
-	await anim.animation_finished
+	# 2. WAIT for the "Swing" point (Adjust 0.3 to match your sprite!)
+	# If your animation is 0.5s, the hit usually happens around 0.3s
+	await get_tree().create_timer(0.3).timeout
 	
-	melee_hitbox.disabled = true # Turn OFF the circle
+	# 3. NOW enable the hitbox (Damage & Flash happen here)
+	melee_hitbox.disabled = false 
+	
+	# 4. Keep it active for a split second (active frames)
+	await get_tree().create_timer(0.1).timeout
+	
+	# 5. Turn it off
+	melee_hitbox.disabled = true 
+	
+	# 6. Wait for the rest of the animation to finish cleanly
+	if anim.is_playing():
+		await anim.animation_finished
+	
 	is_attacking = false
 	
 	
@@ -140,7 +178,9 @@ func start_dash():
 	is_dashing = true
 	set_collision_mask_value(2, false)
 	
-	# Play dash animation if you have one, otherwise keep running
+	# CHANGE: Use movement direction instead of mouse direction
+	var move_dir = get_movement_dir()
+	anim.play("dash_" + move_dir)
 	
 	await get_tree().create_timer(dash_duration).timeout
 	is_dashing = false
@@ -148,10 +188,6 @@ func start_dash():
 	
 	await get_tree().create_timer(dash_cooldown * GameManager.dash_cooldown_multiplier).timeout
 	can_dash = true
-
-func set_vision_scale(scale_amount : float):
-	light.texture_scale = scale_amount
-	
 
 # Called when the node enters the scene tree for the first time.
 
@@ -175,3 +211,12 @@ func _on_melee_hitbox_body_entered(body: Node2D) -> void:
 			
 		# Optional: Add knockback or a hit sound here
 		print("Melee hit!", body.name)
+
+
+func set_vision_scale(new_scale: float):
+	# Directly scale the PointLight2D to change the visible area
+	if light:
+		light.texture_scale = new_scale
+	
+	# Optional: You can also adjust the light's energy for a "dimming" effect
+	# light.energy = 1.27 * new_scalew

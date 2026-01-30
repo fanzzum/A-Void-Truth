@@ -41,7 +41,7 @@ func _process(_delta: float) -> void:
 	# 2. UPDATE HEALTH (Direct polling)
 	var player = get_tree().get_first_node_in_group("Player")
 	if player:
-		health_bar.max_value = GameManager.player_max_hp
+		health_bar.max_value = 100
 		health_bar.value = player.current_hp
 	
 	# 3. VOID GLITCH EFFECT

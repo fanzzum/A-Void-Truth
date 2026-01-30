@@ -38,7 +38,6 @@ func sacrifice_eye():
 	
 func sacrifice_soul():
 	player_max_hp-=30
-	if player_max_hp<=10:player_max_hp=10
 	print("Soul has been Sacrificed .soul is now : ",player_max_hp)
 	emit_signal("stats_updated")
 

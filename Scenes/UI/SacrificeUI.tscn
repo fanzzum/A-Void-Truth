@@ -1,6 +1,58 @@
-[gd_scene load_steps=2 format=3 uid="uid://cde0f8yjvati"]
+[gd_scene load_steps=22 format=3 uid="uid://cde0f8yjvati"]
 
 [ext_resource type="Script" uid="uid://ctuqla61p8rgy" path="res://Scenes/UI/sacrifice_ui.gd" id="1_bp0t2"]
+[ext_resource type="Texture2D" uid="uid://c1wfmnurtvjl1" path="res://Assets/tinyRPG_manaSoulGUI_v_1_0/20250420manaSoul9SlicesA-Sheet.png" id="2_4p4qb"]
+[ext_resource type="Texture2D" uid="uid://h7ydnl70ri15" path="res://Assets/tinyRPG_manaSoulGUI_v_1_0/20250420manaSoulHeaderA-Sheet.png" id="3_p5uuh"]
+[ext_resource type="Texture2D" uid="uid://jbn6e8h4fkft" path="res://Assets/Sprites/fb719.png" id="4_kchhu"]
+[ext_resource type="Texture2D" uid="uid://tl0cajhco7ar" path="res://Assets/Sprites/fb863.png" id="5_m05ho"]
+[ext_resource type="Texture2D" uid="uid://c7uiadstkxwj6" path="res://Assets/Sprites/fb743.png" id="6_ml12k"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4p4qb"]
+texture = ExtResource("3_p5uuh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kchhu"]
+texture = ExtResource("3_p5uuh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m05ho"]
+texture = ExtResource("3_p5uuh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p5uuh"]
+texture = ExtResource("3_p5uuh")
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ml12k"]
+texture = ExtResource("3_p5uuh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_veo1f"]
+texture = ExtResource("3_p5uuh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gg35k"]
+texture = ExtResource("3_p5uuh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vstau"]
+texture = ExtResource("3_p5uuh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cdl3o"]
+texture = ExtResource("3_p5uuh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5k6is"]
+texture = ExtResource("3_p5uuh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_np2hb"]
+texture = ExtResource("3_p5uuh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_enw6a"]
+texture = ExtResource("3_p5uuh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pkcna"]
+texture = ExtResource("3_p5uuh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w2jxq"]
+texture = ExtResource("3_p5uuh")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_umhcd"]
+texture = ExtResource("3_p5uuh")
 
 [node name="SacrificeUi" type="CanvasLayer"]
 process_mode = 3
@@ -15,43 +67,115 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="Panel"]
+visible = false
 layout_mode = 0
-offset_right = 639.0
-offset_bottom = 361.0
+offset_right = 955.0
+offset_bottom = 539.0
 color = Color(0, 0, 0, 0.77900004)
 
-[node name="SacrificeRow" type="HBoxContainer" parent="."]
-offset_left = 180.0
-offset_top = 93.0
-offset_right = 466.0
-offset_bottom = 247.0
+[node name="SacrificeRow" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.48000002
+anchor_top = 0.5
+anchor_right = 0.48000002
+anchor_bottom = 0.5
+offset_left = -162.80002
+offset_top = -125.0
+offset_right = 189.19998
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="SacrificeRow"]
+position = Vector2(176.99998, 153.8125)
+scale = Vector2(4.1874995, 4.8789067)
+texture = ExtResource("2_4p4qb")
 
 [node name="Button" type="Button" parent="SacrificeRow"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Sight"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.83137256, 0.39607844, 1, 1)
+theme_override_colors/font_hover_color = Color(0.90551394, 0, 0.25415587, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_4p4qb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kchhu")
+theme_override_styles/hover = SubResource("StyleBoxTexture_m05ho")
+text = "Offer Sight
+[-25% vision]"
 
 [node name="Button2" type="Button" parent="SacrificeRow"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Soul"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.83137256, 0.39607844, 1, 1)
+theme_override_colors/font_hover_color = Color(0.90588236, 0, 0.25490198, 1)
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("StyleBoxTexture_p5uuh")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ml12k")
+theme_override_styles/hover = SubResource("StyleBoxTexture_veo1f")
+text = "Offer Sanity
+[-30 Sanity]"
 
 [node name="Button3" type="Button" parent="SacrificeRow"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-text = "Reflex"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.83137256, 0.39607844, 1, 1)
+theme_override_colors/font_hover_color = Color(0.90588236, 0, 0.25490198, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_gg35k")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vstau")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cdl3o")
+text = "Offer Reflex
+[-15% Speed]
+[+50% Dash Cooldown]"
 
-[node name="SelectionRow" type="HBoxContainer" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="SacrificeRow"]
+position = Vector2(107, 51)
+scale = Vector2(1.625, 1.40625)
+texture = ExtResource("4_kchhu")
+
+[node name="Sprite2D3" type="Sprite2D" parent="SacrificeRow"]
+position = Vector2(103.99999, 152.99998)
+scale = Vector2(1.21875, 1.1875)
+texture = ExtResource("5_m05ho")
+
+[node name="Sprite2D4" type="Sprite2D" parent="SacrificeRow"]
+position = Vector2(107, 250)
+texture = ExtResource("6_ml12k")
+
+[node name="SelectionRow" type="VBoxContainer" parent="."]
 visible = false
-offset_left = 203.0
-offset_top = 66.0
-offset_right = 438.0
-offset_bottom = 278.0
+offset_left = 355.0
+offset_top = 173.0
+offset_right = 590.0
+offset_bottom = 385.0
 alignment = 1
 
+[node name="Sprite2D" type="Sprite2D" parent="SelectionRow"]
+position = Vector2(112, 108)
+scale = Vector2(3.4, 3.4)
+texture = ExtResource("2_4p4qb")
+
 [node name="BtnOptionA" type="Button" parent="SelectionRow"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.83137256, 0.39607844, 1, 1)
+theme_override_colors/font_hover_color = Color(0.90588236, 0, 0.25490198, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_5k6is")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_np2hb")
+theme_override_styles/hover = SubResource("StyleBoxTexture_enw6a")
 
 [node name="BtnOptionB" type="Button" parent="SelectionRow"]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.83137256, 0.39607844, 1, 1)
+theme_override_colors/font_hover_color = Color(0.90588236, 0, 0.25490198, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_pkcna")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_w2jxq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_umhcd")
 
 [connection signal="pressed" from="SacrificeRow/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="SacrificeRow/Button2" to="." method="_on_button_2_pressed"]
