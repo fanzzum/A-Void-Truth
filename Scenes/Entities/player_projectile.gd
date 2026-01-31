@@ -1,7 +1,7 @@
 extends Area2D
 
 var speed = 600
-var damage = 25
+var damage = 50
 var current_bounces =0
 
 func _physics_process(delta: float) -> void:

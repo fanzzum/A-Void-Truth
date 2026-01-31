@@ -4,7 +4,7 @@ var projectile_scene = preload("res://Scenes/Entities/PlayerProjectile.tscn")
 # EXPORT VARIABLES: Tweak these in the Inspector!
 @export_group("Movement")
 @export var speed: float = 280.0
-@export var dash_speed: float = 600.0
+@export var dash_speed: float = 520.0
 @export var dash_duration: float = 0.2
 @export var dash_cooldown: float = 0.5
 @export var current_hp = 0.0
@@ -18,10 +18,14 @@ var can_dash : bool = true
 var is_dashing : bool = false
 var is_attacking : bool = false
 
+@onready var sfx_dash = $SfxDash
+@onready var sfx_slash = $SfxSlash
+@onready var sfx_beam = $SfxBeam
 
 func _ready() -> void:
 	current_hp = GameManager.player_max_hp
 	add_to_group("Player")
+	melee_hitbox.disabled = true
 	update_stats()
 	GameManager.stats_updated.connect(update_stats)
 
@@ -110,6 +114,7 @@ func shoot():
 	if current_hp > GameManager.hp_cost_beam:
 		is_attacking = true
 		var face_dir = get_facing_direction()
+		sfx_beam.play()
 		anim.play("shoot_" + face_dir) 
 		
 		# 1. WAIT for the gun to actually lift up (e.g., 0.3 seconds)
@@ -136,6 +141,7 @@ func shoot():
 
 func melee_swing():
 	is_attacking = true
+	sfx_slash.play()
 	
 	# 1. Start the visual animation
 	var face_dir = get_facing_direction()
@@ -176,13 +182,15 @@ func die():
 func start_dash():
 	can_dash = false
 	is_dashing = true
+	sfx_dash.play()
+	melee_hitbox.disabled =true
 	set_collision_mask_value(2, false)
 	
 	# CHANGE: Use movement direction instead of mouse direction
 	var move_dir = get_movement_dir()
 	anim.play("dash_" + move_dir)
 	
-	await get_tree().create_timer(dash_duration).timeout
+	await anim.animation_finished
 	is_dashing = false
 	set_collision_mask_value(2, true)
 	

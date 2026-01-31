@@ -22,13 +22,23 @@ offset_bottom = 273.0
 theme_override_colors/font_color = Color(1, 0.07016479, 0, 1)
 theme_override_font_sizes/font_size = 38
 text = "CONNECTION LOST"
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 419.0
-offset_top = 284.0
-offset_right = 537.0
-offset_bottom = 315.0
+offset_left = 425.0
+offset_top = 268.0
+offset_right = 543.0
+offset_bottom = 299.0
 text = "Retry Memory"
 
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 451.0
+offset_top = 322.0
+offset_right = 523.0
+offset_bottom = 345.0
+text = "Main Menu"
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

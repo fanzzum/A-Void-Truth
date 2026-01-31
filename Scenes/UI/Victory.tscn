@@ -21,7 +21,9 @@ offset_right = 659.0
 offset_bottom = 273.0
 theme_override_colors/font_color = Color(0, 0.5552664, 0.9226742, 1)
 theme_override_font_sizes/font_size = 38
-text = "Memory Restored"
+text = "Memory Restored
+You are now sane again"
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0

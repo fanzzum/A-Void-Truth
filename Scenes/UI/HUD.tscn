@@ -1,6 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dsqa244d34lyo"]
+[gd_scene load_steps=13 format=3 uid="uid://dsqa244d34lyo"]
 
 [ext_resource type="Script" uid="uid://cl6vmfhg70y1g" path="res://Scenes/UI/hud.gd" id="1_omqfp"]
+[ext_resource type="Texture2D" uid="uid://d3qp03e6fjkx4" path="res://Assets/Sprites/fc5.png" id="2_lelo4"]
+[ext_resource type="Texture2D" uid="uid://ka630fjmgfla" path="res://Assets/Sprites/fc991.png" id="3_1ree7"]
+[ext_resource type="Texture2D" uid="uid://vysigiqbpysf" path="res://Assets/Sprites/fc1190.png" id="4_d2sja"]
+[ext_resource type="Texture2D" uid="uid://56abl1hmxhnc" path="res://Assets/Sprites/fc864.png" id="5_i4i0y"]
+[ext_resource type="Texture2D" uid="uid://7836wedrmfwc" path="res://Assets/Sprites/fc948.png" id="6_yenib"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_umhnj"]
 
@@ -36,6 +41,11 @@ offset_right = 231.0
 offset_bottom = 39.0
 theme_override_styles/background = SubResource("StyleBoxFlat_umhnj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_omqfp")
+
+[node name="Sprite2D" type="Sprite2D" parent="MainControl/HealthBar"]
+position = Vector2(223.00003, 12.000006)
+scale = Vector2(0.484375, 0.484375)
+texture = ExtResource("2_lelo4")
 
 [node name="ConnectionBars" type="VBoxContainer" parent="MainControl"]
 layout_mode = 0
@@ -91,6 +101,26 @@ text = "Mimic"
 custom_minimum_size = Vector2(150, 20)
 layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_ykvyr")
+
+[node name="Sprite2D" type="Sprite2D" parent="MainControl/ConnectionBars"]
+position = Vector2(-18.999992, 7.000004)
+scale = Vector2(0.32812536, 0.32812536)
+texture = ExtResource("3_1ree7")
+
+[node name="Sprite2D2" type="Sprite2D" parent="MainControl/ConnectionBars"]
+position = Vector2(-18, 33)
+scale = Vector2(0.328, 0.328)
+texture = ExtResource("4_d2sja")
+
+[node name="Sprite2D3" type="Sprite2D" parent="MainControl/ConnectionBars"]
+position = Vector2(-19, 57)
+scale = Vector2(0.328, 0.328)
+texture = ExtResource("5_i4i0y")
+
+[node name="Sprite2D4" type="Sprite2D" parent="MainControl/ConnectionBars"]
+position = Vector2(-19, 82)
+scale = Vector2(0.328, 0.328)
+texture = ExtResource("6_yenib")
 
 [node name="StatusList" type="VBoxContainer" parent="MainControl"]
 layout_mode = 1

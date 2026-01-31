@@ -17,3 +17,8 @@ func _ready():
 	
 	# 3. Start it
 	dialogue.start_dialogue(tutorial_text)
+	$AudioStreamPlayer2D.play()
+
+
+func _on_pitfall_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.

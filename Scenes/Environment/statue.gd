@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 		open_ui()
 		
 func open_ui():
+	$AudioStreamPlayer2D.play()
 	is_used = true # <--- Lock the statue immediately
 	
 	# Visual Feedback: Darken the statue to look "drained"

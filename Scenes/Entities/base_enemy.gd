@@ -1,25 +1,31 @@
 extends CharacterBody2D
 class_name BaseEnemy
+
 @export_group("Aggro Settings")
 @export var detection_range: float = 250.0  # Range to start chasing
 var is_aggro: bool = false
 
+@export_group("Visuals")
+@export var visual_offset_x: float = 0.0 # Fixes sprite centering issues (Set to 38 for Goblin)
 
 @export var damage_to_player = 10
 var hp = 100
 var player_ref = null
 var is_dying = false
 
-# Get reference to the new AnimatedSprite2D
-# Make sure the node in your scene is named "AnimatedSprite2D"
+# Get reference to the AnimatedSprite2D
 @onready var anim = $AnimatedSprite2D 
 
 func _ready() -> void:
 	player_ref = get_tree().get_first_node_in_group("Player")
+	
+	# Apply the initial offset so it doesn't jump on the first frame
+	if anim:
+		anim.position.x = visual_offset_x
+		
 	if GameManager.thermal_vision:
 		# This makes the enemy ignore shadows/darkness
 		$AnimatedSprite2D.unshaded = true
-
 
 func check_for_player() -> bool:
 	if !player_ref or is_dying: return false
@@ -32,15 +38,22 @@ func check_for_player() -> bool:
 func _process(delta: float) -> void:
 	if is_dying: return
 
-	# --- 1. ANIMATION DIRECTION (Mirroring) ---
-	# Our sprites are LEFT facing by default.
-	# If moving RIGHT (velocity.x > 0), we FLIP it to face right.
+	# --- 1. ANIMATION DIRECTION & OFFSET FIX ---
+	# Adjust the +/- signs here if your enemy faces the wrong way!
+	
 	if velocity.x < 0:
-		anim.flip_h = true  # Face Right
+		# Moving Left
+		anim.flip_h = true  
+		# When flipping, we invert the position to keep the sprite centered
+		anim.position.x = -visual_offset_x 
+		
 	elif velocity.x > 0:
-		anim.flip_h = false # Face Left (Default)
+		# Moving Right
+		anim.flip_h = false 
+		# Reset to the normal offset
+		anim.position.x = visual_offset_x 
 
-	# --- 2. THERMAL VISION (Your existing logic) ---
+	# --- 2. THERMAL VISION ---
 	if GameManager.thermal_vision:
 		if material == null:
 			material = CanvasItemMaterial.new()
@@ -54,11 +67,11 @@ func take_damage(amount: float):
 	hp -= amount
 	
 	# --- START FLASH LOGIC ---
-	# Create a quick white flash effect
 	var tween = create_tween()
 	# Set modulate to a very high value to make it "glow" white
 	anim.modulate = Color(10, 10, 10, 1) 
-	# Smoothly transition back to the standard color (or thermal color) over 0.1 seconds
+	
+	# Smoothly transition back to standard or thermal color
 	var target_color = Color(3, 0.5, 0.5) if GameManager.thermal_vision else Color.WHITE
 	tween.tween_property(anim, "modulate", target_color, 0.1)
 	# --- END FLASH LOGIC ---

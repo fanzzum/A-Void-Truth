@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://k33st4vbvpkf"]
+
+[ext_resource type="Script" uid="uid://2ql100hbpr70" path="res://Scenes/Levels/pitfall.gd" id="1_uuvdr"]
+
+[node name="Pitfall" type="Area2D"]
+script = ExtResource("1_uuvdr")
