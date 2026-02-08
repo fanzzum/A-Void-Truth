@@ -80,6 +80,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("test"):
 		GameManager.sacrifice_eye() # Test Vision Loss
 		
+		
+		
+		
 func get_facing_direction() -> String:
 	# Convert mouse angle to 4-direction string
 	var angle = (get_global_mouse_position() - global_position).angle()
@@ -129,7 +132,7 @@ func shoot():
 		if tree and tree.root:
 			tree.root.add_child(beam)
 		
-		take_damage(GameManager.hp_cost_beam)
+		take_damage(5)
 		# --- SPAWN LOGIC ENDS ---
 		
 		if current_hp > 0:
@@ -144,6 +147,7 @@ func melee_swing():
 	sfx_slash.play()
 	
 	# 1. Start the visual animation
+	current_hp -=2
 	var face_dir = get_facing_direction()
 	anim.play("melee_" + face_dir) 
 	

@@ -27,6 +27,16 @@ bg_color = Color(0, 0.5793735, 1, 1)
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_omqfp")
 
+[node name="VoidOverlay" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.43, 0, 0, 0.76862746)
+
 [node name="MainControl" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
@@ -135,13 +145,3 @@ offset_right = 877.0
 offset_bottom = 298.0
 grow_horizontal = 0
 grow_vertical = 2
-
-[node name="VoidOverlay" type="ColorRect" parent="."]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bidxgcmqcx4lr"]
+[gd_scene load_steps=20 format=3 uid="uid://bidxgcmqcx4lr"]
 
 [ext_resource type="PackedScene" uid="uid://bfi5qajxctm76" path="res://Scenes/Environment/Statue.tscn" id="1_5jgm0"]
 [ext_resource type="Script" uid="uid://bu4x0xqji1k57" path="res://Scenes/Levels/level_1.gd" id="1_67y36"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://btbeircsbd1n6" path="res://Assets/Sprites/VoidDoor1.png" id="11_77iba"]
 [ext_resource type="Texture2D" uid="uid://dni58esiployh" path="res://Assets/Sprites/VoidDoor2.png" id="12_67y36"]
 [ext_resource type="AudioStream" uid="uid://chyytl6vhddap" path="res://Assets/Audio/07 - DavidKBD - Purgatory Pack - Hades.ogg" id="13_77iba"]
+[ext_resource type="PackedScene" uid="uid://d2n24rrc2u5an" path="res://Scenes/UI/DialogueTrigger.tscn" id="15_hk4vc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hk4vc"]
 animations = [{
@@ -58,14 +59,13 @@ gradient = SubResource("Gradient_0v0gn")
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_67y36")
 
+[node name="Hud" parent="." instance=ExtResource("6_4d3fe")]
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.101960786, 0.101960786, 0.18039216, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_36ke7")]
 position = Vector2(59, 352)
-
-[node name="Hud" parent="." instance=ExtResource("6_4d3fe")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_xvio3")
@@ -74,12 +74,13 @@ layer_0/y_sort_enabled = true
 layer_0/tile_data = PackedInt32Array(1900550, 3, 0, 1507346, 3, 0, 1114142, 3, 0, 720938, 3, 0, 1114167, 3, 0, 327710, 3, 0, -65494, 3, 0, 327735, 3, 0, 720964, 3, 0, 327760, 3, 0, -65468, 3, 0, -458697, 3, 0, -851880, 3, 0, -1245084, 3, 0, -1638312, 3, 0, -2031540, 3, 0, -2424768, 3, 0, -2817972, 3, 0, -3211200, 3, 0, -3604404, 3, 0, -3997607, 3, 0, -3211175, 3, 0, -3604378, 3, 0, -2817946, 3, 0, -3211150, 3, 0, -4194186, 3, 0, -4849529, 3, 0, -5504907, 3, 0, -2555772, 3, 0, -3276647, 3, 0, -4718520, 3, 0, -5308361, 3, 0, -3276616, 3, 0, -2490202, 3, 0, -1900361, 3, 0, -1310521, 3, 0, -1703725, 3, 0, -917317, 3, 0, -261941, 3, 0, -655145, 3, 0, -1048349, 3, 0, 131287, 3, 0, -261916, 3, 0, -655120, 3, 0)
 
 [node name="Pitfall" parent="." instance=ExtResource("4_xvio3")]
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Pitfall"]
 polygon = PackedVector2Array(102, 483, 694, 189, 889, 293, 1548, -31, 1361, -147, 1873, -408, 1290, -696, 1426, -768, 1643, -658, 1843, -748, 2134, -600, 2394, -742, 2925, -448, 2752, -325, 3488, 79, 4119, -274, 3369, -672, 3187, -566, 2881, -743, 3198, -907, 2947, -1049, 2701, -905, 2454, -1048, 2112, -869, 1913, -1014, 2418, -1294, 1879, -1590, 1633, -1450, 1943, -1284, 1649, -1125, 880, -1543, 649, -1410, 1187, -1109, 771, -886, 970, -794, 767, -691, 1339, -421, 1085, -262, 884, -362, 251, -38, 412, 59, -145, 360, 87, 476, -154, 646, -500, 320, -193, -250, 189, -579, 348, -956, 95, -1567, 824, -1838, 2107, -2109, 2866, -1662, 3530, -1256, 4507, -538, 4742, -56, 4254, 450, 3066, 521, 2518, -26, 2054, 15, 1601, 432, 413, 868, 154, 632, -32, 574)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Pitfall"]
-polygon = PackedVector2Array(2960, -158, 2980, -140, 3702, -512, 3638, -551, 2969, -185, 2768, -310, 2786, -339, 3438, -675, 3384, -700, 2716, -347, 2708, -557, 2690, -568, 3017, -733, 2694, -915, 2445, -768, 2186, -939, 1816, -733, 1869, -711, 1921, -758, 2140, -869, 2429, -707, 2690, -858, 2904, -725, 2607, -559, 2660, -274, 2816, -207)
+polygon = PackedVector2Array(2960, -158, 2980, -140, 3702, -512, 3638, -551, 2969, -185, 2768, -310, 2786, -339, 3438, -675, 3384, -700, 2716, -347, 2708, -557, 2690, -568, 3017, -733, 2713, -914, 2445, -768, 2186, -939, 1816, -733, 1869, -711, 1921, -758, 2140, -869, 2429, -707, 2690, -858, 2904, -725, 2607, -559, 2660, -274, 2816, -207)
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Pitfall"]
 polygon = PackedVector2Array(2133, -1484, 2188, -1446, 1925, -1285, 2197, -1149, 1901, -980, 1585, -1144, 1439, -1220, 1150, -1080, 1128, -1109, 1408, -1276, 1161, -1392, 919, -1251, 875, -1266, 1162, -1434, 1687, -1124, 1895, -1020, 2119, -1144, 1850, -1297)
@@ -239,7 +240,7 @@ tile_set = ExtResource("1_xvio3")
 format = 2
 layer_0/tile_data = PackedInt32Array(-196550, 1441796, 10, -262079, 1179652, 19, -786379, 1179652, 19, -131035, 1703940, 12, -1310629, 1703940, 12, -1572780, 1703940, 12, 1114130, 1441796, 10, 786443, 1441796, 10, -2228146, 655364, 1, -2293684, 655364, 1, -2359222, 655364, 1, -3080115, 917508, 11, -3211184, 917508, 11, -3342250, 917508, 11, -4194216, 917508, 11, -4128678, 917508, 11, -4063140, 917508, 11, -3997602, 917508, 11, -5373871, 1441796, 10, -2883452, 1703940, 12, -3407740, 1703940, 12, -2621229, 1703940, 12, -2293539, 1703940, 12, -1179461, 1703940, 12, -1507151, 1703940, 12, -1507130, 1703940, 12, -1834820, 1703940, 12, -2228024, 1703940, 12, -1900334, 1703940, 12)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Player"]]
 z_index = -1
 material = SubResource("CanvasItemMaterial_n5ptj")
 position = Vector2(2514.5, -477.50018)
@@ -248,6 +249,14 @@ texture = SubResource("GradientTexture2D_77iba")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_77iba")
+
+[node name="DialogueTrigger" parent="." instance=ExtResource("15_hk4vc")]
+position = Vector2(3772, -264)
+dialogue_lines = Array[String](["...You start to See a faint light, but its not in front of you", "You see a person, a very neutral person", "You can't figure out if you want to hate him or like him", "\"Is this who I am?\"", "...The Personalities aren't answering. It seems they have disappeareda"])
+
+[node name="DialogueTrigger2" parent="." instance=ExtResource("15_hk4vc")]
+position = Vector2(389, 227)
+dialogue_lines = Array[String](["You Sense Something", "Voice : It's here somewhere, your true self", "The personality's voice sounds faint than usual"])
 
 [editable path="Pitfall"]
 [editable path="ExitDoor"]

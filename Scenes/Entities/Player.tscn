@@ -1110,7 +1110,7 @@ material = SubResource("CanvasItemMaterial_crkm8")
 position = Vector2(2.2737368e-13, -60.000004)
 scale = Vector2(1.8076504, 1.8000001)
 sprite_frames = SubResource("SpriteFrames_4kc40")
-animation = &"idle_down"
+animation = &"shoot_up"
 autoplay = "idle_down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

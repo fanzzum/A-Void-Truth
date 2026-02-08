@@ -7,12 +7,11 @@ func _ready():
 	
 	# 2. Define the "Tutorial" lines
 	var tutorial_text = [
-		"VOICE: Wake up... We are the fragments of your mind.",
-		"VOICE: You are trapped in the Glitch. To escape, you must survive the Loop.",
+		"VOICE: Why are you here?",
+		"VOICE: You are trapped in the Glitch. the only escape is the end , no choice except Running",
 		"VOICE: Find the STATUES. Sacrifice your memories to summon our power.",
 		"VOICE: But beware... if your CONNECTION drops to Zero...",
 		"VOICE: The Void will consume you forever.",
-		"VOICE: Now go. Break the cycle."
 	]
 	
 	# 3. Start it

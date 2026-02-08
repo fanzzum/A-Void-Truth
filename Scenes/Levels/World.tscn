@@ -28,15 +28,14 @@ gradient = SubResource("Gradient_qjxhu")
 y_sort_enabled = true
 script = ExtResource("1_n8hij")
 
-[node name="Player" parent="." instance=ExtResource("1_0yxnd")]
-y_sort_enabled = true
-position = Vector2(104, 290)
-
 [node name="Hud" parent="." instance=ExtResource("9_0v0gn")]
-visible = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_0yxnd")]
+y_sort_enabled = true
+position = Vector2(104, 290)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_exae8")

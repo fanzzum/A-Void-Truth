@@ -1,37 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://w38kcn5adm8e"]
+[gd_scene load_steps=5 format=3 uid="uid://w38kcn5adm8e"]
 
 [ext_resource type="Script" uid="uid://dk4cojdha14hv" path="res://Scenes/Environment/exit_door.gd" id="1_jtrp4"]
-[ext_resource type="Texture2D" uid="uid://clepkxos7opu7" path="res://Assets/Sprites/VoidDoor.png" id="2_wkdm6"]
-[ext_resource type="Texture2D" uid="uid://btbeircsbd1n6" path="res://Assets/Sprites/VoidDoor1.png" id="3_jh8i8"]
-[ext_resource type="Texture2D" uid="uid://dni58esiployh" path="res://Assets/Sprites/VoidDoor2.png" id="4_wwcxx"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_jvlw6"]
-animations = [{
-"frames": [],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_wkdm6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_jh8i8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_wwcxx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_jh8i8")
-}],
-"loop": true,
-"name": &"new_animation",
-"speed": 2.0
-}]
+[ext_resource type="Texture2D" uid="uid://bxewoq0gmpbv5" path="res://Assets/Sprites/UntitledArtwork2.png" id="2_wkdm6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wkdm6"]
-size = Vector2(111, 26)
+size = Vector2(42, 41)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v0wta"]
 radius = 54.502293
@@ -39,23 +12,20 @@ radius = 54.502293
 [node name="ExitDoor" type="StaticBody2D"]
 script = ExtResource("1_jtrp4")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-2, -24)
-scale = Vector2(0.048891127, 0.034256067)
-sprite_frames = SubResource("SpriteFrames_jvlw6")
-animation = &"new_animation"
-autoplay = "new_animation"
-frame_progress = 0.57433337
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-11, -51)
+scale = Vector2(1.3576739, 1.3285006)
+texture = ExtResource("2_wkdm6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, -4)
+position = Vector2(-12, -30.5)
 shape = SubResource("RectangleShape2D_wkdm6")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 2
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-2, -15)
+position = Vector2(-11, -30)
 shape = SubResource("CircleShape2D_v0wta")
 
 [node name="Label" type="Label" parent="."]

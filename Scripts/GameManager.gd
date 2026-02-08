@@ -26,7 +26,7 @@ var thermal_vision = false
 var is_blood_rushed = false
 var mimic_active = false
 
-var is_void_level = false
+var is_void_level = false     
 
 
 func sacrifice_eye():

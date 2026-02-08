@@ -3,7 +3,7 @@ extends CanvasLayer
 # --- NODE REFERENCES ---
 @onready var health_bar = $MainControl/HealthBar
 @onready var status_list = $MainControl/StatusList
-@onready var void_overlay = $MainControl/VoidOverlay
+@onready var void_overlay = $VoidOverlay
 
 # Updated paths for the HBoxContainer rows
 @onready var bar_daydreamer = $MainControl/ConnectionBars/DayDreamerRow/DayDreamer
@@ -35,8 +35,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	# 1. VOID OVERLAY VISIBILITY
-	if void_overlay:
-		void_overlay.visible = GameManager.is_void_level
+	void_overlay.visible = GameManager.is_void_level
 	
 	# 2. UPDATE HEALTH (Direct polling)
 	var player = get_tree().get_first_node_in_group("Player")

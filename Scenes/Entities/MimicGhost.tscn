@@ -500,6 +500,7 @@ animations = [{
 }]
 
 [node name="MimicGhost" type="Node2D"]
+z_index = 3
 script = ExtResource("1_dedje")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

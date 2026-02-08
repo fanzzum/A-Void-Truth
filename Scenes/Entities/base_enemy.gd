@@ -8,7 +8,7 @@ var is_aggro: bool = false
 @export_group("Visuals")
 @export var visual_offset_x: float = 0.0 # Fixes sprite centering issues (Set to 38 for Goblin)
 
-@export var damage_to_player = 10
+@export var damage_to_player = 20
 var hp = 100
 var player_ref = null
 var is_dying = false
@@ -17,6 +17,7 @@ var is_dying = false
 @onready var anim = $AnimatedSprite2D 
 
 func _ready() -> void:
+	add_to_group("Enemy")
 	player_ref = get_tree().get_first_node_in_group("Player")
 	
 	# Apply the initial offset so it doesn't jump on the first frame
@@ -25,7 +26,9 @@ func _ready() -> void:
 		
 	if GameManager.thermal_vision:
 		# This makes the enemy ignore shadows/darkness
-		$AnimatedSprite2D.unshaded = true
+		if anim.material == null:
+			anim.material = CanvasItemMaterial.new()
+		anim.material.light_mode = CanvasItemMaterial.LIGHT_MODE_UNSHADED #
 
 func check_for_player() -> bool:
 	if !player_ref or is_dying: return false
@@ -86,6 +89,10 @@ func take_damage(amount: float):
 func die():
 	if is_dying: return # Prevent multiple calls
 	is_dying = true
+	var player = get_tree().get_first_node_in_group("Player")
+	if player:
+		# Heal the player for 5 HP (soul) per kill
+		player.current_hp = min(player.current_hp + 12.0, GameManager.player_max_hp)
 	
 	# Stop all movement and physics immediately 
 	velocity = Vector2.ZERO 

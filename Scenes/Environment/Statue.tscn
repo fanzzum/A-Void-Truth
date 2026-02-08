@@ -1,8 +1,51 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfi5qajxctm76"]
+[gd_scene load_steps=12 format=3 uid="uid://bfi5qajxctm76"]
 
 [ext_resource type="Script" uid="uid://cleaw7aqwd4ha" path="res://Scenes/Environment/statue.gd" id="1_83jbs"]
-[ext_resource type="Texture2D" uid="uid://enk2vff7av4g" path="res://Assets/Sprites/statue.webp" id="2_sxhfm"]
+[ext_resource type="Texture2D" uid="uid://b3drectrrwkqf" path="res://Assets/Sprites/Pigstatue.png" id="2_rg8ys"]
 [ext_resource type="AudioStream" uid="uid://qa6ernbjr2if" path="res://Assets/Audio/ui.wav" id="3_rg8ys"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6g0g"]
+atlas = ExtResource("2_rg8ys")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_duoom"]
+atlas = ExtResource("2_rg8ys")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41fvu"]
+atlas = ExtResource("2_rg8ys")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cd37"]
+atlas = ExtResource("2_rg8ys")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyqn6"]
+atlas = ExtResource("2_rg8ys")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ar8g6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6g0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_duoom")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41fvu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cd37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyqn6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sxhfm"]
 size = Vector2(54, 29.75)
@@ -13,10 +56,12 @@ radius = 58.00862
 [node name="Statue" type="StaticBody2D"]
 script = ExtResource("1_83jbs")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, -44)
-scale = Vector2(0.08549842, 0.08324563)
-texture = ExtResource("2_sxhfm")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.46699333, -38.582985)
+scale = Vector2(1.3583436, 1.2682182)
+sprite_frames = SubResource("SpriteFrames_ar8g6")
+autoplay = "default"
+frame_progress = 0.59232193
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -14)
@@ -26,7 +71,7 @@ shape = SubResource("RectangleShape2D_sxhfm")
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -16)
+position = Vector2(-1, -12)
 shape = SubResource("CircleShape2D_rg8ys")
 
 [node name="Label" type="Label" parent="."]
